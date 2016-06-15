@@ -37,22 +37,39 @@ print(Friedman_data9)
 #redshift value
 z_values=Friedman_data9["zCMB"]
 
-#luminosity distance calculation
+#Luminosity distance calculation
 lum_dis=cosmo.luminosity_distance(z_values)
 lum_dis=lum_dis.value
 print " Luminosity-distance after calculated:" , lum_dis
 
 
+#Luminosity distance module calculation
+
+lum_dist_modulus=cosmo.distmod(z_values)
+print "Luminosity distance modulus values are :" ,lum_dist_modulus
+lum_dist_modulus=lum_dist_modulus.value
+print "Luminosity distance modulus values are :" ,lum_dist_modulus
+
 # Method 1 without eliminating Mpc
 
 
-plt.figure()
+
+plt.figure(1)
 plt.errorbar(z_values,lum_dis,0*Friedman_data9["e_zCMB"],Friedman_data9["e_zCMB"],fmt='o')
 #plt.scatter(z_values,lum_dis)
 plt.xlabel("Red Shift")
 plt.ylabel("Luminosity Distance - Mpc ")
 plt.title("Friedman 2015 Paper-Luminosity distance versus Z ")
 plt.show()
+plt.close()
+
+plt.figure(2)
+plt.errorbar(z_values,lum_dist_modulus,0*Friedman_data9["e_zCMB"],Friedman_data9["e_zCMB"],fmt='o')
+plt.xlabel("Red Shift")
+plt.ylabel("Luminosity Distance Modulus - Magnitude")
+plt.title("Friedman 2015 Paper-Luminosity distance modulus versus Z ")
+plt.show()
+
 
 
 '''
